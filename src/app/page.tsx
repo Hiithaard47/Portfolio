@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ProjectRail } from "@/components/ProjectRail";
+import { Capabilities } from "@/components/Capabilities";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   // 0: Cold Start | 1: Spinning | 2: Success | 3: Render App
@@ -54,11 +57,25 @@ export default function Home() {
 
   // --- STATE 3: THE CANVAS ---
   return (
-    <main className="min-h-screen w-full flex flex-col justify-center px-6 md:px-12 animate-system-boot">
-      <div className="max-w-4xl mt-[-10vh]">
-        <h1>BUILDING SYSTEMS.</h1>
-        <p>High-throughput pipelines, core application runtimes, and strict visual discipline.</p>
+    <main className="min-h-screen w-full flex flex-col pt-[25vh] px-6 md:px-12 animate-system-boot">
+      {/* Hero Hook */}
+      <div className="max-w-4xl">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans tracking-tighter text-zinc-100 leading-[1.1]">
+          BUILDING SYSTEMS.
+        </h1>
+        <p className="mt-6 font-mono text-xs md:text-sm text-zinc-500 uppercase tracking-widest max-w-xl leading-relaxed">
+          High-throughput pipelines, core application runtimes, and strict visual discipline.
+        </p>
       </div>
+
+      {/* Project Grid */}
+      <ProjectRail />
+
+      {/* Stack Breakdown */}
+      <Capabilities />
+
+      {/* End of Line */}
+      <Footer />
     </main>
   );
 }

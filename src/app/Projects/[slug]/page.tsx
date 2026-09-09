@@ -1,0 +1,101 @@
+import { PROJECTS } from "@/lib/projects";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function ProjectPage({ params }: PageProps) {
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  return (
+    <main className="min-h-screen w-full px-6 md:px-12 py-24 max-w-4xl mx-auto animate-system-boot">
+      {/* Back Navigation */}
+      <div className="mb-12">
+        <Link 
+          href="/" 
+          className="font-mono text-xs text-zinc-500 hover:text-zinc-200 transition-colors uppercase tracking-widest"
+        >
+          ← [ Return to Index ]
+        </Link>
+      </div>
+
+      {/* Header Metadata */}
+      <div className="border-b border-white/[0.08] pb-8 mb-12 space-y-4">
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-[10px] tracking-wider text-zinc-400 border border-white/[0.08] px-2 py-0.5 bg-black/50">
+            {project.index} // {project.category}
+          </span>
+          <span className="font-mono text-[10px] text-zinc-500">
+            {project.metrics}
+          </span>
+        </div>
+
+        <h1 className="text-4xl md:text-6xl font-sans tracking-tighter text-zinc-100">
+          {project.title}
+        </h1>
+
+        <p className="font-mono text-xs md:text-sm text-zinc-400 max-w-2xl leading-relaxed">
+          {project.overview}
+        </p>
+      </div>
+
+      {/* Technical Stack Manifest */}
+      <div className="mb-12">
+        <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">
+          [ Technology Stack ]
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {project.stack.map((tech, i) => (
+            <span key={i} className="font-mono text-xs text-zinc-300 bg-[#111113] border border-white/[0.07] px-3 py-1 rounded-sm">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Architecture Breakdown */}
+      <div className="space-y-6 mb-16">
+        <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+          [ System Architecture & Execution ]
+        </h2>
+        <ul className="space-y-4">
+          {project.architecture.map((point, i) => (
+            <li key={i} className="flex items-start gap-3 font-mono text-xs text-zinc-400 leading-relaxed border-l border-white/[0.1] pl-4">
+              <span className="text-zinc-600">0{i + 1}.</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* External Reference Link */}
+      {project.link && (
+        <div className="pt-8 border-t border-white/[0.08]">
+          <a 
+            href={project.link} 
+            target="_blank" 
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-xs text-zinc-200 bg-zinc-900 border border-white/[0.1] px-5 py-2.5 rounded-sm hover:bg-zinc-800 transition-colors"
+          >
+            <span>Access Deployment / Source Artifact</span>
+            <span>↗</span>
+          </a>
+        </div>
+      )}
+    </main>
+  );
+}
+
+// Generate static routes at build time
+export async function generateStaticParams() {
+  return PROJECTS.map((project) => ({
+    slug: project.slug,
+  }));
+}
