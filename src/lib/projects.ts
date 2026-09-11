@@ -1,3 +1,9 @@
+export interface GalleryItem {
+  src: string;
+  caption?: string;
+  alt: string;
+}
+
 export interface Project {
   slug: string;
   index: string;
@@ -16,6 +22,7 @@ export interface Project {
   }[];
   outcomes: string[];
   link?: string;
+  gallery?: GalleryItem[];
 }
 
 export const PROJECTS: Project[] = [
@@ -150,5 +157,42 @@ export const PROJECTS: Project[] = [
       "Scaled read-performance through optimized 2dsphere indexing algorithms."
     ],
     link: "https://youtu.be/DnyuYM8pGwk?si=1j4ZxzMm5CWyUbxD"
+  },
+  {
+    slug: "dijkstra-logistics-optimizer",
+    index: "05",
+    category: "Systems & Algorithms",
+    title: "Multi-Node Logistics Network Optimizer",
+    discipline: "Systems Programming & Graph Theory",
+    metrics: "O(E log V) Routing Efficiency",
+    stack: ["C++", "Graph Theory", "Data Structures", "STL", "CLI"],
+
+    thumbnail: "/assets/dijkstra-logistics-thumb.jpg",
+    cover: "/assets/dijkstra-logistics-cover.jpg",
+
+    overview: "A high-performance C++ routing engine engineered to compute optimal dispatch paths across multi-node logistical supply networks using Dijkstra’s shortest-path algorithm.",
+
+    problemStatement: "Supply chain networks frequently face significant dispatch delays and suboptimal fuel consumption when navigating complex, weighted multi-node distribution grids under dynamic road and transit constraints.",
+
+    architecture: [
+      {
+        heading: "Graph Modeling & State Representation",
+        details: "Modeled distribution hubs, transfer centers, and delivery points as directed weighted adjacency lists, enabling rapid state queries and minimal memory overhead."
+      },
+      {
+        heading: "Priority Queue Optimization",
+        details: "Implemented Dijkstra's algorithm leveraging min-heaps via the C++ STL priority queue to achieve O((V + E) log V) time complexity during route discovery."
+      },
+      {
+        heading: "Path Reconstruction & Network Diagnostics",
+        details: "Engineered backtracking traversal mechanisms to extract exact end-to-end waypoint sequences alongside cumulative traversal costs for operational audits."
+      }
+    ],
+
+    outcomes: [
+      "Delivered deterministic, low-latency shortest-path calculations across dense multi-node logistics graphs.",
+      "Eliminated redundant path recalculations through efficient adjacency-list traversal and heap-based vertex evaluation.",
+      "Validated edge cases including disconnected components, cyclic routes, and variable dispatch weights."
+    ]
   }
 ];

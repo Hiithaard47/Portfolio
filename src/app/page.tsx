@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
+import { CyclingHeading } from "@/components/CyclingHeading";
 import { ProjectRail } from "@/components/ProjectRail";
 import { Capabilities } from "@/components/Capabilities";
 import { Footer } from "@/components/Footer";
@@ -68,25 +70,39 @@ export default function Home() {
 
   // --- STATE 3: THE CANVAS ---
   return (
-    <main className="min-h-screen w-full flex flex-col pt-[25vh] px-6 md:px-12 animate-system-boot">
-      {/* Hero Hook */}
-      <div className="max-w-4xl">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans tracking-tighter text-zinc-100 leading-[1.1]">
-          BUILDING SYSTEMS.
-        </h1>
-        <p className="mt-6 font-mono text-xs md:text-sm text-zinc-500 uppercase tracking-widest max-w-xl leading-relaxed">
-          High-throughput pipelines, core application runtimes, and strict visual discipline.
-        </p>
+    <main className="min-h-screen w-full flex flex-col animate-system-boot">
+      {/* Hero Section tightly bounded to content height */}
+      <section className="relative w-full pt-20 md:pt-28 pb-16 px-6 md:px-12 overflow-hidden">
+        {/* Background Image Layer */}
+        <div className="absolute inset-0 pointer-events-none -z-10">
+          <Image
+            src="/assets/cover.jpg"
+            alt="Atmospheric architectural light slit"
+            fill
+            priority
+            quality={90}
+            className="object-cover object-[center_35%] opacity-40"
+          />
+          {/* Gradients feathering edges into canvas ground */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/80 via-transparent to-transparent" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="max-w-4xl relative z-10">
+          <CyclingHeading />
+          <p className="mt-6 font-mono text-xs md:text-sm text-zinc-400 uppercase tracking-widest max-w-xl leading-relaxed">
+            High-throughput pipelines, core application runtimes, and strict visual discipline.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Body Containers */}
+      <div className="px-6 md:px-12">
+        <ProjectRail />
+        <Capabilities />
+        <Footer />
       </div>
-
-      {/* Project Grid */}
-      <ProjectRail />
-
-      {/* Stack Breakdown */}
-      <Capabilities />
-
-      {/* End of Line */}
-      <Footer />
     </main>
   );
 }
