@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LiveTelemetry } from "@/components/LiveTelemetry";
 import "./globals.css";
 
 // 1. Initialize our font variables
@@ -38,9 +39,7 @@ export default function RootLayout({
             </div>
             
             {/* Center Column (True Center, hidden on mobile) */}
-            <div className="justify-self-center hidden md:block">
-              ABU DHABI [UTC+4] — 24.4539° N, 54.3773° E
-            </div>
+            <LiveTelemetry />
             
             {/* Right Column */}
             <div className="justify-self-end flex gap-4">

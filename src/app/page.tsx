@@ -13,9 +13,20 @@ export default function Home() {
 
   // Sequence Timer
   useEffect(() => {
-    const t1 = setTimeout(() => setBootPhase(1), 1000); // Cold start duration
-    const t2 = setTimeout(() => setBootPhase(2), 4200); // Spinner duration
-    const t3 = setTimeout(() => setBootPhase(3), 6000); // Success message duration
+    // Check if the system has already booted in this session
+    const hasBooted = sessionStorage.getItem("systemBooted");
+    
+    if (hasBooted) {
+      setBootPhase(3); // Skip straight to the canvas
+      return;
+    }
+
+    const t1 = setTimeout(() => setBootPhase(1), 400); // Cold start
+    const t2 = setTimeout(() => setBootPhase(2), 3200); // Spinner
+    const t3 = setTimeout(() => {
+      setBootPhase(3);
+      sessionStorage.setItem("systemBooted", "true"); // Lock it in for the session
+    }, 5000); // Success
 
     return () => {
       clearTimeout(t1);

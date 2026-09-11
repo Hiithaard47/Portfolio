@@ -1,6 +1,7 @@
 import { PROJECTS } from "@/lib/projects";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -16,6 +17,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen w-full px-6 md:px-12 py-24 max-w-4xl mx-auto animate-system-boot">
+      
       {/* Back Navigation */}
       <div className="mb-12">
         <Link 
@@ -27,57 +29,106 @@ export default async function ProjectPage({ params }: PageProps) {
       </div>
 
       {/* Header Metadata */}
-      <div className="border-b border-white/[0.08] pb-8 mb-12 space-y-4">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-[10px] tracking-wider text-zinc-400 border border-white/[0.08] px-2 py-0.5 bg-black/50">
+      <div className="space-y-4 mb-8">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="font-mono text-[10px] tracking-wider text-zinc-400 border border-white/[0.08] px-2 py-0.5 bg-[#111113]">
             {project.index} // {project.category}
           </span>
           <span className="font-mono text-[10px] text-zinc-500">
             {project.metrics}
           </span>
         </div>
-
         <h1 className="text-4xl md:text-6xl font-sans tracking-tighter text-zinc-100">
           {project.title}
         </h1>
-
         <p className="font-mono text-xs md:text-sm text-zinc-400 max-w-2xl leading-relaxed">
           {project.overview}
         </p>
       </div>
 
-      {/* Technical Stack Manifest */}
-      <div className="mb-12">
-        <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">
-          [ Technology Stack ]
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          {project.stack.map((tech, i) => (
-            <span key={i} className="font-mono text-xs text-zinc-300 bg-[#111113] border border-white/[0.07] px-3 py-1 rounded-sm">
-              {tech}
-            </span>
-          ))}
+      {/* Cover Image */}
+      <div className="relative w-full aspect-video bg-[#111113] border border-white/[0.08] mb-12 overflow-hidden rounded-sm">
+        {project.cover ? (
+          <Image 
+            src={project.cover} 
+            alt={`${project.title} Architecture`} 
+            fill 
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+            priority
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center font-mono text-xs text-zinc-700">
+            [ ASSET MISSING ]
+          </div>
+        )}
+      </div>
+
+      {/* Content Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-white/[0.08] pb-16 mb-12">
+        
+        {/* Left Column: Stack & Problem */}
+        <div className="md:col-span-1 space-y-12">
+          <div>
+            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">
+              [ Stack ]
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map((tech, i) => (
+                <span key={i} className="font-mono text-xs text-zinc-300 bg-[#111113] border border-white/[0.07] px-3 py-1 rounded-sm">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">
+              [ Problem Statement ]
+            </h2>
+            <p className="font-mono text-xs text-zinc-400 leading-relaxed">
+              {project.problemStatement}
+            </p>
+          </div>
+        </div>
+
+        {/* Right Column: Architecture & Outcomes */}
+        <div className="md:col-span-2 space-y-12">
+          <div>
+            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-6">
+              [ System Architecture ]
+            </h2>
+            <div className="space-y-6">
+              {project.architecture.map((item, i) => (
+                <div key={i} className="border-l border-white/[0.1] pl-4">
+                  <h3 className="font-sans text-lg text-zinc-200 tracking-tight mb-2">
+                    {item.heading}
+                  </h3>
+                  <p className="font-mono text-xs text-zinc-400 leading-relaxed">
+                    {item.details}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-6">
+              [ Outcomes ]
+            </h2>
+            <ul className="space-y-3">
+              {project.outcomes.map((point, i) => (
+                <li key={i} className="flex items-start gap-3 font-mono text-xs text-zinc-400 leading-relaxed">
+                  <span className="text-zinc-600 mt-0.5">▹</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
-      {/* Architecture Breakdown */}
-      <div className="space-y-6 mb-16">
-        <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
-          [ System Architecture & Execution ]
-        </h2>
-        <ul className="space-y-4">
-          {project.architecture.map((point, i) => (
-            <li key={i} className="flex items-start gap-3 font-mono text-xs text-zinc-400 leading-relaxed border-l border-white/[0.1] pl-4">
-              <span className="text-zinc-600">0{i + 1}.</span>
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* External Reference Link */}
+      {/* External Link */}
       {project.link && (
-        <div className="pt-8 border-t border-white/[0.08]">
+        <div className="pb-16">
           <a 
             href={project.link} 
             target="_blank" 
@@ -93,7 +144,6 @@ export default async function ProjectPage({ params }: PageProps) {
   );
 }
 
-// Generate static routes at build time
 export async function generateStaticParams() {
   return PROJECTS.map((project) => ({
     slug: project.slug,
