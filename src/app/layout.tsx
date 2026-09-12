@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* 2. Your Sticky Overhead Anchor */}
-        <header className="sticky top-0 z-50 w-full px-6 py-5 bg-[#0a0a0b]/80 backdrop-blur-sm border-b border-white/[0.05]">
+        <header className="fixed top-0 left-0 right-0 z-50 w-full px-6 py-5 bg-[#0a0a0b]/80 backdrop-blur-sm border-b border-white/[0.05]">
           <nav className="flex justify-between md:grid md:grid-cols-3 items-center font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest">
             {/* Left Column */}
             <div className="justify-self-start">

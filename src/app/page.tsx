@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { CyclingHeading } from "@/components/CyclingHeading";
 import { ProjectRail } from "@/components/ProjectRail";
 import { Capabilities } from "@/components/Capabilities";
+import { OperatingPrinciples } from "@/components/OperatingPrinciples";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -70,24 +71,25 @@ export default function Home() {
 
   // --- STATE 3: THE CANVAS ---
   return (
-    <main className="min-h-screen w-full flex flex-col animate-system-boot">
-      {/* Hero Section tightly bounded to content height */}
-      <section className="relative w-full pt-20 md:pt-28 pb-16 px-6 md:px-12 overflow-hidden">
-        {/* Background Image Layer */}
-        <div className="absolute inset-0 pointer-events-none -z-10">
-          <Image
-            src="/assets/cover.jpg"
-            alt="Atmospheric architectural light slit"
-            fill
-            priority
-            quality={90}
-            className="object-cover object-[center_35%] opacity-40"
-          />
-          {/* Gradients feathering edges into canvas ground */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/30 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/80 via-transparent to-transparent" />
-        </div>
+    <main className="relative min-h-screen w-full flex flex-col animate-system-boot">
+      
+      {/* Background Image Layer (Anchored to top of window, behind the fixed nav) */}
+      <div className="absolute top-0 left-0 right-0 h-[750px] pointer-events-none -z-10 overflow-hidden">
+        <Image
+          src="/assets/cover.jpg"
+          alt="Atmospheric architectural light slit"
+          fill
+          priority
+          quality={100}
+          className="object-cover object-[center_35%] opacity-70"
+        />
+        {/* Gradients feathering edges into canvas ground */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/80 via-transparent to-transparent" />
+      </div>
 
+      {/* Hero Section tightly bounded to content height */}
+      <section className="relative w-full pt-32 md:pt-40 pb-16 px-6 md:px-12">
         {/* Hero Content */}
         <div className="max-w-4xl relative z-10">
           <CyclingHeading />
@@ -101,6 +103,7 @@ export default function Home() {
       <div className="px-6 md:px-12">
         <ProjectRail />
         <Capabilities />
+        <OperatingPrinciples />
         <Footer />
       </div>
     </main>

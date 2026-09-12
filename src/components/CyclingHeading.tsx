@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 
 const SYSTEM_DOMAINS = [
   { term: "SYSTEMS.", code: "SYS_01" },
-  { term: "SOFTWARE.", code: "RT_02" },
-  { term: "INFRASTRUCTURE.", code: "INF_03" },
-  { term: "SOLUTIONS.", code: "ENG_04" },
-  { term: "EXPERIENCES.", code: "INT_05" },
+  { term: "SOLUTIONS.", code: "ENG_02" },
+  { term: "RUNTIMES.", code: "RT_03" },
+  { term: "PIPELINES.", code: "PIP_04" },
+  { term: "EXPERIENCES.", code: "EXP_05" },
 ];
 
 export function CyclingHeading() {
@@ -46,7 +46,8 @@ export function CyclingHeading() {
       </div>
 
       {/* Main Display Matrix - Locked to prevent horizontal wrap jumping */}
-      <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans tracking-tighter text-zinc-100 leading-[0.95] flex flex-col items-start">
+      {/* <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-sans tracking-tighter text-zinc-100 leading-[0.95] flex flex-col items-start"> */}
+      <h1 className="text-[42px] sm:text-[68px] md:text-[84px] lg:text-8xl font-sans tracking-tighter text-zinc-100 leading-[0.95] flex flex-col items-start">
         <span className="text-zinc-400">BUILDING</span>
         
         {/* Bounded Kinetic Window */}
