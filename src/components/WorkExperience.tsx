@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 interface ExperienceItem {
@@ -5,6 +6,7 @@ interface ExperienceItem {
   timeframe: string;
   role: string;
   company: string;
+  logo: string;
   location: string;
   summary: string;
   stack: string[];
@@ -18,6 +20,7 @@ const EXPERIENCES: ExperienceItem[] = [
     timeframe: "OCT 2025 – MAY 2026",
     role: "Software Developer [Contract]",
     company: "Poole Process Engineering Services",
+    logo: "/assets/Company Logos/poole-es.png",
     location: "Abu Dhabi, UAE",
     summary:
       "Engineered corporate production web systems end-to-end from zero baseline footprint, owning architecture, client-side caching pipelines, and deployment pipelines.",
@@ -34,6 +37,7 @@ const EXPERIENCES: ExperienceItem[] = [
     timeframe: "JAN 2024 – JUL 2024",
     role: "IT Support & Data Management Intern",
     company: "Sophos Technologies Pvt. Ltd.",
+    logo: "/assets/Company Logos/sophos.png",
     location: "Ahmedabad, India",
     summary:
       "Administered enterprise access tiers, operational asset datastores, and continuous data reconciliation pipelines across internal corporate infrastructure.",
@@ -49,6 +53,7 @@ const EXPERIENCES: ExperienceItem[] = [
     timeframe: "MAY 2023 – JUN 2023",
     role: "Cyber Security Intern",
     company: "Tech Mahindra Ltd.",
+    logo: "/assets/Company Logos/tech_mahindra.png",
     location: "Pune, India",
     summary:
       "Constructed automated security verification tooling and audited network edge threat perimeters across enterprise environments.",
@@ -63,6 +68,7 @@ const EXPERIENCES: ExperienceItem[] = [
     timeframe: "JUL 2021 – AUG 2021",
     role: "IT Operations Intern",
     company: "Al Nasser Industrial Enterprises",
+    logo: "/assets/Company Logos/anie.png",
     location: "Abu Dhabi, UAE",
     summary:
       "Assisted on-premise infrastructure support runtimes and observed multi-facility corporate IT logistics.",
@@ -96,18 +102,29 @@ export function WorkExperience() {
         {EXPERIENCES.map((exp) => (
           <div
             key={exp.id}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 border-b border-white/[0.08] pb-16"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 border-b border-white/[0.08] pb-16 group"
           >
-            {/* Left 1/3 Column: Company Name, Timeline, Stack */}
+            {/* Left 1/3 Column: Logo + Company Name, Timeline, Stack */}
             <div className="md:col-span-1 space-y-8">
-            <div>
-                <h3 className="text-xl md:text-2xl font-sans tracking-tight text-zinc-100 mb-2">
+              <div>
+                <div className="flex items-center gap-3.5 mb-3">
+                  <div className="relative w-8 h-8 rounded-sm bg-[#111113] border border-white/[0.08] p-1.5 shrink-0 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.company} emblem`}
+                      fill
+                      className="object-contain p-1 grayscale-0 opacity-100 md:grayscale md:opacity-80 md:group-hover:grayscale-0 md:group-hover:opacity-100 transition-all duration-300"
+                    />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-sans tracking-tight text-zinc-100 leading-snug">
                     {exp.company}
-                </h3>
+                  </h3>
+                </div>
+
                 <p className="font-mono text-xs md:text-[13px] text-zinc-500 tracking-wider">
-                    {exp.timeframe}
+                  {exp.timeframe}
                 </p>
-            </div>
+              </div>
 
               <div>
                 <h4 className="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest mb-3">
@@ -140,7 +157,7 @@ export function WorkExperience() {
               )}
             </div>
 
-            {/* Right 2/3 Column: Role (Primary Focus), Location, Deliverables */}
+            {/* Right 2/3 Column: Role, Location, Deliverables */}
             <div className="md:col-span-2 space-y-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-sans tracking-tight text-zinc-100 mb-1">

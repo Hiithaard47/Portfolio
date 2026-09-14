@@ -101,7 +101,7 @@ function ProjectCard({ project }: { project: Project }) {
             src={project.thumbnail}
             alt={project.title}
             fill
-            className="object-cover opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700"
+            className="object-cover opacity-100 grayscale-0 md:opacity-50 md:grayscale md:group-hover:opacity-100 md:group-hover:grayscale-0 transition-all duration-700"
           />
         )}
 
