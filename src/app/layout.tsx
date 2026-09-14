@@ -34,8 +34,8 @@ export default function RootLayout({
           <nav className="flex justify-between md:grid md:grid-cols-3 items-center font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest">
             {/* Left Column */}
             <div className="justify-self-start">
-              <span className="text-zinc-300">HITARTH VYAS</span>
-              <span className="hidden sm:inline"> — SYS & DATA</span>
+              <span className="text-zinc-300">HIT_VYAS</span>
+              <span className="hidden sm:inline"> — ADMIN (READ-ONLY)</span>
             </div>
             
             {/* Center Column (True Center, hidden on mobile) */}
