@@ -39,7 +39,7 @@ export function ProjectRail() {
   };
 
   return (
-    <section className="w-full py-24 mt-24 border-t border-white/[0.05]">
+    <section className="w-full py-24 mt-24  border-t border-white/[0.05]">
       {/* Header */}
       <div className="flex items-center justify-between pb-8 mb-8 border-b border-white/[0.05]">
         <div className="flex items-center gap-4">

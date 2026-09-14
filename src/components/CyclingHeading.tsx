@@ -46,7 +46,6 @@ export function CyclingHeading() {
       </div>
 
       {/* Main Display Matrix - Locked to prevent horizontal wrap jumping */}
-      {/* <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-sans tracking-tighter text-zinc-100 leading-[0.95] flex flex-col items-start"> */}
       <h1 className="text-[42px] sm:text-[68px] md:text-[84px] lg:text-8xl font-sans tracking-tighter text-zinc-100 leading-[0.95] flex flex-col items-start">
         <span className="text-zinc-400">BUILDING</span>
         

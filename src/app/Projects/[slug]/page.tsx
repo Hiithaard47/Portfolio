@@ -32,7 +32,6 @@ function PlatformIcon({ url }: { url: string }) {
     );
   }
 
-  // Fallback generic link glyph
   return <span>↗</span>;
 }
 
@@ -51,7 +50,7 @@ export default async function ProjectPage({ params }: PageProps) {
       <div className="mb-12">
         <Link 
           href="/" 
-          className="font-mono text-xs text-zinc-500 hover:text-zinc-200 transition-colors uppercase tracking-widest"
+          className="font-mono text-xs md:text-sm text-zinc-500 hover:text-zinc-200 transition-colors uppercase tracking-widest"
         >
           ← [ Return to Index ]
         </Link>
@@ -60,17 +59,17 @@ export default async function ProjectPage({ params }: PageProps) {
       {/* Header Metadata */}
       <div className="space-y-4 mb-8">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-[10px] tracking-wider text-zinc-400 border border-white/[0.08] px-2 py-0.5 bg-[#111113]">
+          <span className="font-mono text-[10px] md:text-xs tracking-wider text-zinc-400 border border-white/[0.08] px-2 py-0.5 bg-[#111113]">
             {project.index} // {project.category}
           </span>
-          <span className="font-mono text-[10px] text-zinc-500">
+          <span className="font-mono text-[10px] md:text-xs text-zinc-500">
             {project.metrics}
           </span>
         </div>
         <h1 className="text-4xl md:text-6xl font-sans tracking-tighter text-zinc-100">
           {project.title}
         </h1>
-        <p className="font-mono text-xs md:text-sm text-zinc-400 max-w-2xl leading-relaxed">
+        <p className="font-mono text-xs md:text-[15px] text-zinc-400 max-w-2xl leading-relaxed">
           {project.overview}
         </p>
       </div>
@@ -98,22 +97,22 @@ export default async function ProjectPage({ params }: PageProps) {
         {/* Left Column: Stack & Problem */}
         <div className="md:col-span-1 space-y-12">
           <div>
-            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">
+            <h2 className="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest mb-4">
               [ Stack ]
             </h2>
             <div className="flex flex-wrap gap-2">
               {project.stack.map((tech, i) => (
-                <span key={i} className="font-mono text-xs text-zinc-300 bg-[#111113] border border-white/[0.07] px-3 py-1 rounded-sm">
+                <span key={i} className="font-mono text-xs md:text-[14px] text-zinc-300 bg-[#111113] border border-white/[0.07] px-3 py-1 rounded-sm">
                   {tech}
                 </span>
               ))}
             </div>
           </div>
           <div>
-            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">
+            <h2 className="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest mb-4">
               [ Problem Statement ]
             </h2>
-            <p className="font-mono text-xs text-zinc-400 leading-relaxed">
+            <p className="font-mono text-xs md:text-[15px] text-zinc-400 leading-relaxed">
               {project.problemStatement}
             </p>
           </div>
@@ -122,16 +121,16 @@ export default async function ProjectPage({ params }: PageProps) {
         {/* Right Column: Architecture & Outcomes */}
         <div className="md:col-span-2 space-y-12">
           <div>
-            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-6">
+            <h2 className="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest mb-6">
               [ System Architecture ]
             </h2>
-            <div className="space-y-6">
+            <div className="space-y-6 md:space-y-8">
               {project.architecture.map((item, i) => (
                 <div key={i} className="border-l border-white/[0.1] pl-4">
-                  <h3 className="font-sans text-lg text-zinc-200 tracking-tight mb-2">
+                  <h3 className="font-sans text-lg md:text-xl text-zinc-200 tracking-tight mb-2">
                     {item.heading}
                   </h3>
-                  <p className="font-mono text-xs text-zinc-400 leading-relaxed">
+                  <p className="font-mono text-xs md:text-[15px] text-zinc-400 leading-relaxed">
                     {item.details}
                   </p>
                 </div>
@@ -140,12 +139,12 @@ export default async function ProjectPage({ params }: PageProps) {
           </div>
 
           <div>
-            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-6">
+            <h2 className="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest mb-6">
               [ Outcomes ]
             </h2>
-            <ul className="space-y-3">
+            <ul className="space-y-3 md:space-y-4">
               {project.outcomes.map((point, i) => (
-                <li key={i} className="flex items-start gap-3 font-mono text-xs text-zinc-400 leading-relaxed">
+                <li key={i} className="flex items-start gap-3 font-mono text-xs md:text-[15px] text-zinc-400 leading-relaxed">
                   <span className="text-zinc-600 mt-0.5">▹</span>
                   <span>{point}</span>
                 </li>
@@ -159,17 +158,17 @@ export default async function ProjectPage({ params }: PageProps) {
       {project.gallery && project.gallery.length > 0 && (
         <section className="space-y-6 mb-16 border-b border-white/[0.08] pb-16">
           <div className="flex items-center justify-between">
-            <h2 className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+            <h2 className="font-mono text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest">
               [ Execution Artifacts & Telemetry ]
             </h2>
-            <span className="font-mono text-[10px] text-zinc-600">
+            <span className="font-mono text-[10px] md:text-xs text-zinc-600">
               LOG ({project.gallery.length.toString().padStart(2, "0")})
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {project.gallery.map((item, i) => (
-              <figure key={i} className="space-y-2">
+              <figure key={i} className="space-y-3">
                 <div className="relative aspect-video w-full overflow-hidden rounded-sm border border-white/[0.08] bg-[#111113]">
                   <Image
                     src={item.src}
@@ -180,7 +179,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   />
                 </div>
                 {item.caption && (
-                  <figcaption className="font-mono text-[10px] text-zinc-500 leading-tight">
+                  <figcaption className="font-mono text-[10px] md:text-xs text-zinc-500 leading-tight">
                     // {item.caption}
                   </figcaption>
                 )}
@@ -197,7 +196,7 @@ export default async function ProjectPage({ params }: PageProps) {
             href={project.link} 
             target="_blank" 
             rel="noreferrer"
-            className="inline-flex items-center gap-3 font-mono text-xs text-zinc-200 bg-zinc-900 border border-white/[0.1] px-5 py-2.5 rounded-sm hover:bg-zinc-800 hover:border-white/20 transition-all group"
+            className="inline-flex items-center gap-3 font-mono text-xs md:text-[14px] text-zinc-200 bg-zinc-900 border border-white/[0.1] px-5 py-2.5 rounded-sm hover:bg-zinc-800 hover:border-white/20 transition-all group"
           >
             <span>Access Deployment / Source Artifact</span>
             <span className="text-zinc-400 group-hover:text-zinc-100 transition-colors">

@@ -6,6 +6,8 @@ import { CyclingHeading } from "@/components/CyclingHeading";
 import { ProjectRail } from "@/components/ProjectRail";
 import { Capabilities } from "@/components/Capabilities";
 import { OperatingPrinciples } from "@/components/OperatingPrinciples";
+import {WorkExperience} from "@/components/WorkExperience";
+import {Dispatch} from "@/components/Dispatch";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -74,7 +76,7 @@ export default function Home() {
     <main className="relative min-h-screen w-full flex flex-col animate-system-boot">
       
       {/* Background Image Layer (Anchored to top of window, behind the fixed nav) */}
-      <div className="absolute top-0 left-0 right-0 h-[750px] pointer-events-none -z-10 overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-[75vh] pointer-events-none -z-10 overflow-hidden">
         <Image
           src="/assets/cover.jpg"
           alt="Atmospheric architectural light slit"
@@ -88,8 +90,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/80 via-transparent to-transparent" />
       </div>
 
-      {/* Hero Section tightly bounded to content height */}
-      <section className="relative w-full pt-32 md:pt-40 pb-16 px-6 md:px-12">
+      {/* Hero Section */}
+      {/* UPDATE: Added min-h-[75vh] to set the 3/4 height */}
+      {/* UPDATE: Added flex flex-col justify-center to vertically center the content */}
+      <section className="relative w-full min-h-[65vh] flex flex-col justify-center pt-32 md:pt-40 pb-16 px-6 md:px-12">
         {/* Hero Content */}
         <div className="max-w-4xl relative z-10">
           <CyclingHeading />
@@ -101,9 +105,11 @@ export default function Home() {
 
       {/* Main Body Containers */}
       <div className="px-6 md:px-12">
-        <ProjectRail />
-        <Capabilities />
         <OperatingPrinciples />
+        <ProjectRail />
+        <Capabilities />        
+        <WorkExperience />
+        <Dispatch />
         <Footer />
       </div>
     </main>
